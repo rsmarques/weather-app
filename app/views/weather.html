@@ -32,25 +32,10 @@
 </div>
 <div ng-cloak layout="column" layout-align="center center">
     <div layout="row" class="weather-forecast" layout-align="center center">
-        <div style="background-color:#6695B3" flex="25" layout="column" layout-align="center center">
-            <h6>{{ forecast[1].weekDay}}</h6>
-            <img class="stats-icon" ng-src="{{ forecast[1].icon }}" class="md-card-image">
-            <h6>{{ forecast[1].temp.max + 'º'}}</h6>
-        </div>
-        <div style="background-color:#4E84A8" flex="25" layout="column" layout-align="center center">
-            <h6>{{ forecast[2].weekDay}}</h6>
-            <img class="stats-icon" ng-src="{{ forecast[2].icon }}" class="md-card-image">
-            <h6>{{ forecast[2].temp.max + 'º'}}</h6>
-        </div>
-        <div style="background-color:#31729C" flex="25" layout="column" layout-align="center center">
-            <h6>{{ forecast[3].weekDay}}</h6>
-            <img class="stats-icon" ng-src="{{ forecast[3].icon }}" class="md-card-image">
-            <h6>{{ forecast[3].temp.max + 'º'}}</h6>
-        </div>
-        <div style="background-color:#19608E" flex="25" layout="column" layout-align="center center">
-            <h6>{{ forecast[4].weekDay}}</h6>
-            <img class="stats-icon" ng-src="{{ forecast[4].icon }}" class="md-card-image">
-            <h6>{{ forecast[4].temp.max + 'º'}}</h6>
+        <div ng-class="f.className" flex="25" layout="column" layout-align="center center" ng-repeat="f in forecast | limitTo : 4 : 1">
+            <h6>{{ f.weekDay}}</h6>
+            <img class="stats-icon" ng-src="{{ f.icon }}" class="md-card-image">
+            <h6>{{ f.temp.max + 'º'}}</h6>
         </div>
     </div>
 </div>
