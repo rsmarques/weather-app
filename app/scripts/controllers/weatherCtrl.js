@@ -11,6 +11,22 @@ angular.module('weatherApp')
 
     .controller('WeatherCtrl', function ($scope, Weather) {
 
+        $scope.increaseForecastIndex    = function(ev) {
+            if ($scope.forecastIndex < $scope.forecast.length - 1) {
+                $scope.forecastIndex++;
+            }
+
+            return true;
+        };
+
+        $scope.decreaseForecastIndex    = function(ev) {
+            if ($scope.forecastIndex > 0) {
+                $scope.forecastIndex--;
+            }
+
+            return true;
+        };
+
         $scope.getCurrentForecast   = function ()
         {
             Weather.getForecastByString({appid: '2911ba8cd195c0f95bd59a86e338c71e', units: 'metric', q: 'Lisbon'}, function (result) {
