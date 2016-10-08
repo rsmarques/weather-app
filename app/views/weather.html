@@ -1,0 +1,56 @@
+<div layout="column" style="background-color:#004F82;" flex>
+    <div ng-cloak class="weather-area" layout="column" layout-align="center center">
+        <div layout="row">
+            <img class="weather-icon" ng-src="{{ forecast[forecastIndex].icon }}" class="md-card-image">
+            <md-list-item class="md-3-line">
+                <div ng-cloak layout="column" class="md-list-item-text" layout-align="center start">
+                    <h2>{{ locationStr }}</h2>
+                    <h3>{{ forecast[forecastIndex].dateStr }}</h3>
+                    <p>{{ forecast[forecastIndex].weather[0].description }}</p>
+                </div>
+            </md-list-item>
+        </div>
+        <h1>{{ forecast[forecastIndex].temp.day + 'º' }}</h1>
+
+        <div layout="row" class="stats-row" layout-align="center center">
+            <div flex="33" layout="column" layout-align="center center">
+                <img class="stats-icon" ng-src="images/icons_weather/humidity.svg" class="md-card-image">
+                <h4>{{ forecast[forecastIndex].humidity + ' %' }}</h4>
+            </div>
+            <p class="stats-divider">|</p>
+            <div flex="33" layout="column" layout-align="center center">
+                <img class="stats-icon" ng-src="images/icons_weather/thermometer.svg" class="md-card-image">
+                <h4>{{ forecast[forecastIndex].temp.min + 'º' }} - {{ forecast[forecastIndex].temp.max + 'º' }}</h4>
+            </div>
+            <p class="stats-divider">|</p>
+            <div flex="33" layout="column" layout-align="center center">
+                <img class="stats-icon" ng-src="images/icons_weather/wind.svg" class="md-card-image">
+                <h4>{{ forecast[forecastIndex].speed + ' m/s' }}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-cloak layout="column" layout-align="center center">
+    <div layout="row" class="weather-forecast" layout-align="center center">
+        <div style="background-color:#6695B3" flex="25" layout="column" layout-align="center center">
+            <h6>{{ forecast[1].weekDay}}</h6>
+            <img class="stats-icon" ng-src="{{ forecast[1].icon }}" class="md-card-image">
+            <h6>{{ forecast[1].temp.max + 'º'}}</h6>
+        </div>
+        <div style="background-color:#4E84A8" flex="25" layout="column" layout-align="center center">
+            <h6>{{ forecast[2].weekDay}}</h6>
+            <img class="stats-icon" ng-src="{{ forecast[2].icon }}" class="md-card-image">
+            <h6>{{ forecast[2].temp.max + 'º'}}</h6>
+        </div>
+        <div style="background-color:#31729C" flex="25" layout="column" layout-align="center center">
+            <h6>{{ forecast[3].weekDay}}</h6>
+            <img class="stats-icon" ng-src="{{ forecast[3].icon }}" class="md-card-image">
+            <h6>{{ forecast[3].temp.max + 'º'}}</h6>
+        </div>
+        <div style="background-color:#19608E" flex="25" layout="column" layout-align="center center">
+            <h6>{{ forecast[4].weekDay}}</h6>
+            <img class="stats-icon" ng-src="{{ forecast[4].icon }}" class="md-card-image">
+            <h6>{{ forecast[4].temp.max + 'º'}}</h6>
+        </div>
+    </div>
+</div>

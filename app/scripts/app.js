@@ -10,6 +10,10 @@
  */
 angular
     .module('weatherApp', [
+        // controllers
+        // services
+        'weatherApp.services',
+        // angular
         'ngAnimate',
         'ngAria',
         'ngCookies',
@@ -17,19 +21,18 @@ angular
         'ngResource',
         'ngRoute',
         'ngSanitize',
-        'ngTouch'
+        // 'ngTouch',
+        'ngMaterial'
     ])
+
+    .constant('WEATHER_API_URL', 'http://api.openweathermap.org/data/2.5/')
+
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/main.html',
-                controller: 'MainCtrl',
-                controllerAs: 'main'
-            })
-            .when('/about', {
-                templateUrl: 'views/about.html',
-                controller: 'AboutCtrl',
-                controllerAs: 'about'
+                templateUrl: 'views/weather.html',
+                controller: 'WeatherCtrl',
+                controllerAs: 'weather'
             })
             .otherwise({
                 redirectTo: '/'
