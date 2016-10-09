@@ -9,7 +9,20 @@
  */
 angular.module('weatherApp')
 
-    .controller('WeatherCtrl', function ($scope, $mdDialog, $mdToast, Weather) {
+    .controller('WeatherCtrl', function ($scope, $geolocation, $mdDialog, $mdToast, Weather) {
+
+        $scope.init  = function ()
+        {
+            $geolocation.getCurrentPosition({
+                timeout: 60000
+            }).then(function (position) {
+                $scope.currentLocation = { type : 'geolocation', args: {'lat' : position.coords.latitude, 'lon' : position.coords.longitude }};
+                $scope.getCurrentForecast();
+            }, function (err) {
+                // error fetching location
+                $scope.showLocationPrompt();
+            });
+        }
 
         $scope.showLocationPrompt = function (ev)
         {
@@ -22,7 +35,7 @@ angular.module('weatherApp')
                 .ok('Done')
 
             $mdDialog.show(confirm).then(function (result) {
-                $scope.currentLocation  = result;
+                $scope.currentLocation = { type : 'string', args : {'q' : result }};
                 $scope.getCurrentForecast();
             });
         };
@@ -51,7 +64,15 @@ angular.module('weatherApp')
 
         $scope.getCurrentForecast   = function ()
         {
-            Weather.getForecastByString({appid: '2911ba8cd195c0f95bd59a86e338c71e', units: 'metric', q: $scope.currentLocation, cnt : 5}, function (result) {
+            if (!$scope.currentLocation.args) {
+                // no location to search for
+                return false;
+            }
+
+            var args    = { appid: '2911ba8cd195c0f95bd59a86e338c71e', units: 'metric', cnt: 5 };
+            for (var key in $scope.currentLocation.args) { args[key] = $scope.currentLocation.args[key]; }
+
+            Weather.getForecast(args, function (result) {
 
                 // decoding response
                 $scope.locationStr      = result.city.name + ', ' + result.city.country;
@@ -86,13 +107,12 @@ angular.module('weatherApp')
                 // showing error toast
                 $mdToast.show(
                     $mdToast.simple()
-                        .textContent(err.data.message ? err.data.message : 'Error getting weather!')
+                        .textContent(err.data && err.data.message ? err.data.message : 'Error getting weather!')
                         .position('top right')
                         .hideDelay(3000)
                 );
             });
         }
 
-        $scope.currentLocation  = 'Lisbon';
-        $scope.getCurrentForecast();
+        $scope.init();
     });

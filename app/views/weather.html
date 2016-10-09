@@ -1,5 +1,5 @@
 <div layout="column" ng-class="forecast[forecastIndex].className" flex>
-    <div ng-cloak class="weather-area demo-swipe" layout="column" layout-align="center center" md-swipe-left="increaseForecastIndex()" md-swipe-right="decreaseForecastIndex()">
+    <div ng-if="forecast" ng-cloak class="weather-area demo-swipe" layout="column" layout-align="center center" md-swipe-left="increaseForecastIndex()" md-swipe-right="decreaseForecastIndex()">
         <div layout="row">
             <img class="weather-icon" ng-src="{{ forecast[forecastIndex].icon }}" class="md-card-image">
             <md-list-item class="md-3-line">
@@ -34,8 +34,14 @@
             </div>
         </div>
     </div>
+    <div ng-if="!forecast" layout="column" layout-align="center center" class="initial-screen">
+        <md-button class="md-icon-button" aria-label="Location" ng-click="showLocationPrompt($event)">
+            <md-icon md-font-set="md">place</md-icon>
+        </md-button>
+        <h2>Weather App</h2>
+    </div>
 </div>
-<div ng-cloak layout="column" layout-align="center center">
+<div ng-if="forecast" ng-cloak layout="column" layout-align="center center">
     <div layout="row" class="weather-forecast" layout-align="center center">
         <md-list-item ng-class="f.className" ng-click="setForecastIndex(f.index)" ng-repeat="f in forecast | limitTo : 4 : 1" flex="25">
             <div layout="column" class="md-list-item-text weather-forecast-column" layout-align="center center">
