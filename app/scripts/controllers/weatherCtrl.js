@@ -9,7 +9,7 @@
  */
 angular.module('weatherApp')
 
-    .controller('WeatherCtrl', function ($scope, $mdDialog, Weather) {
+    .controller('WeatherCtrl', function ($scope, $mdDialog, $mdToast, Weather) {
 
         $scope.showLocationPrompt = function (ev)
         {
@@ -83,9 +83,13 @@ angular.module('weatherApp')
 
 
             }, function (err) {
-                // TODO error treatment
-                console.log("Error getting weather!")
-                console.log(err);
+                // showing error toast
+                $mdToast.show(
+                    $mdToast.simple()
+                        .textContent(err.data.message ? err.data.message : 'Error getting weather!')
+                        .position('top right')
+                        .hideDelay(3000)
+                );
             });
         }
 
