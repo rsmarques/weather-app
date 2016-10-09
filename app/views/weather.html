@@ -7,7 +7,7 @@
                     <div layout="row" class="location-button">
                         <h2>{{ locationStr }}</h2>
                         <md-button class="md-icon-button" aria-label="Location" ng-click="showLocationPrompt($event)">
-                            <md-icon md-font-set="md">place</md-icon>
+                            <img ng-src="images/logo/logo.svg" class="md-card-image">
                         </md-button>
                     </div>
                     <h3>{{ forecast[forecastIndex].dateStr }}</h3>
@@ -36,7 +36,7 @@
     </div>
     <div ng-if="!forecast" layout="column" layout-align="center center" class="initial-screen">
         <md-button class="md-icon-button" aria-label="Location" ng-click="showLocationPrompt($event)">
-            <md-icon md-font-set="md">place</md-icon>
+            <img ng-src="images/logo/logo.svg" class="md-card-image">
         </md-button>
         <h2>Weather App</h2>
     </div>
