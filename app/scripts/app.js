@@ -22,7 +22,8 @@ angular
         'ngRoute',
         'ngSanitize',
         // 'ngTouch',
-        'ngMaterial'
+        'ngMaterial',
+        'ngGeolocation'
     ])
 
     .constant('WEATHER_API_URL', 'http://api.openweathermap.org/data/2.5/')
