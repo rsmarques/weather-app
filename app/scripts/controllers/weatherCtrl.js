@@ -69,7 +69,7 @@ angular.module('weatherApp')
                 return false;
             }
 
-            var args    = { appid: '2911ba8cd195c0f95bd59a86e338c71e', units: 'metric', cnt: 5 };
+            var args    = { units: 'metric', cnt: 5 };
             for (var key in $scope.currentLocation.args) { args[key] = $scope.currentLocation.args[key]; }
 
             Weather.getForecast(args, function (result) {

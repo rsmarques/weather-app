@@ -14,7 +14,7 @@ angular.module('weatherApp.services', ['ngResource'])
             },
 
             getForecast: {
-                url: WEATHER_API_URL + 'forecast/daily',
+                url: '/api/forecast',
                 method: 'GET',
                 params: {
                     q: '@q',
