@@ -1,5 +1,5 @@
-<div layout="column" style="background-color:#004F82;" flex>
-    <div ng-cloak class="weather-area demo-swipe" layout="column" layout-align="center center" md-swipe-left="increaseForecastIndex()" md-swipe-right="decreaseForecastIndex()">
+<div layout="column" flex>
+    <div ng-cloak class="weather-area demo-swipe" ng-class="forecast[forecastIndex].className" layout="column" layout-align="center center" md-swipe-left="increaseForecastIndex()" md-swipe-right="decreaseForecastIndex()">
         <div layout="row">
             <img class="weather-icon" ng-src="{{ forecast[forecastIndex].icon }}" class="md-card-image">
             <md-list-item class="md-3-line">
