@@ -10,7 +10,6 @@
  */
 angular
     .module('weatherApp', [
-        // controllers
         // services
         'weatherApp.services',
         // angular
@@ -25,8 +24,6 @@ angular
         'ngMaterial',
         'ngGeolocation'
     ])
-
-    .constant('WEATHER_API_URL', 'http://api.openweathermap.org/data/2.5/')
 
     .config(function ($routeProvider) {
         $routeProvider
