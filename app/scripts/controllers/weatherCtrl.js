@@ -11,7 +11,7 @@ angular.module('weatherApp')
 
     .controller('WeatherCtrl', function ($scope, Weather) {
 
-        $scope.increaseForecastIndex    = function(ev) {
+        $scope.increaseForecastIndex    = function () {
             if ($scope.forecastIndex < $scope.forecast.length - 1) {
                 $scope.forecastIndex++;
             }
@@ -19,11 +19,17 @@ angular.module('weatherApp')
             return true;
         };
 
-        $scope.decreaseForecastIndex    = function(ev) {
+        $scope.decreaseForecastIndex    = function () {
             if ($scope.forecastIndex > 0) {
                 $scope.forecastIndex--;
             }
 
+            return true;
+        };
+
+        $scope.setForecastIndex     = function (index) {
+
+            $scope.forecastIndex    = index;
             return true;
         };
 
