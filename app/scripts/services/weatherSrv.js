@@ -20,6 +20,7 @@ angular.module('weatherApp.services', ['ngResource'])
                     q: '@q',
                     units: '@units',
                     appid: '@appid',
+                    cnt: '@cnt',
                 }
             },
         });
