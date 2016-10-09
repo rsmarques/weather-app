@@ -60,3 +60,18 @@ body {
 .weather-forecast-day-4 {
     background-color: #19608E;
 }
+
+.location-button > .md-button {
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-top: 0px;
+}
+
+.location-button h2 {
+    padding-top: 5px;
+}
+
+.location-button md-icon {
+    color: #F34A40;
+    font-size: 36px;
+}
