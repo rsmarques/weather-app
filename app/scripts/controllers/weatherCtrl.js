@@ -9,7 +9,23 @@
  */
 angular.module('weatherApp')
 
-    .controller('WeatherCtrl', function ($scope, Weather) {
+    .controller('WeatherCtrl', function ($scope, $mdDialog, Weather) {
+
+        $scope.showLocationPrompt = function (ev)
+        {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.prompt()
+                .title('What\'s your location?')
+                .placeholder('London, UK')
+                .ariaLabel('Location')
+                .targetEvent(ev)
+                .ok('Done')
+
+            $mdDialog.show(confirm).then(function (result) {
+                $scope.currentLocation  = result;
+                $scope.getCurrentForecast();
+            });
+        };
 
         $scope.increaseForecastIndex    = function () {
             if ($scope.forecastIndex < $scope.forecast.length - 1) {
@@ -35,7 +51,7 @@ angular.module('weatherApp')
 
         $scope.getCurrentForecast   = function ()
         {
-            Weather.getForecastByString({appid: '2911ba8cd195c0f95bd59a86e338c71e', units: 'metric', q: 'Lisbon', cnt : 5}, function (result) {
+            Weather.getForecastByString({appid: '2911ba8cd195c0f95bd59a86e338c71e', units: 'metric', q: $scope.currentLocation, cnt : 5}, function (result) {
 
                 // decoding response
                 $scope.locationStr      = result.city.name + ', ' + result.city.country;
@@ -73,5 +89,6 @@ angular.module('weatherApp')
             });
         }
 
+        $scope.currentLocation  = 'Lisbon';
         $scope.getCurrentForecast();
     });
