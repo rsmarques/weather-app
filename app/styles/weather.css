@@ -81,14 +81,6 @@ body {
 }
 
 .initial-screen .md-button {
-    height: 100px;
-    width: 100px;
-    margin-right: 20px;
-}
-
-.initial-screen md-icon {
-    color: #F34A40;
-    font-size: 100px;
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
 }

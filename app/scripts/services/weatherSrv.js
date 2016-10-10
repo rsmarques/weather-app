@@ -1,27 +1,27 @@
 angular.module('weatherApp.services', ['ngResource'])
 
-    .factory('Weather', function ($resource, WEATHER_API_URL) {
-        return $resource(WEATHER_API_URL, {}, {
-
+    .factory('Weather', function ($resource, API_URL) {
+        return $resource(API_URL, {}, {
             getWeather: {
-                url: WEATHER_API_URL + 'weather',
-                method: 'GET',
-                params: {
-                    q: '@q',
-                    units: '@units',
-                    appid: '@appid',
-                }
-            },
-
-            getForecast: {
-                url: '/api/forecast',
+                url: API_URL + 'weather',
                 method: 'GET',
                 params: {
                     q: '@q',
                     lat : '@lat',
                     lon : '@lon',
                     units: '@units',
-                    appid: '@appid',
+                    cnt: '@cnt',
+                }
+            },
+
+            getForecast: {
+                url: API_URL + 'forecast',
+                method: 'GET',
+                params: {
+                    q: '@q',
+                    lat : '@lat',
+                    lon : '@lon',
+                    units: '@units',
                     cnt: '@cnt',
                 }
             },

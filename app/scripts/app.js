@@ -25,6 +25,8 @@ angular
         'ngGeolocation'
     ])
 
+    .constant('API_URL', 'api/')
+
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
