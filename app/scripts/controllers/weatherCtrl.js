@@ -69,7 +69,9 @@ angular.module('weatherApp')
                 return false;
             }
 
-            var args    = { units: 'metric', cnt: 5 };
+            $scope.now  = moment().unix();
+
+            var args    = { units: 'metric' };
             for (var key in $scope.currentLocation.args) { args[key] = $scope.currentLocation.args[key]; }
 
             Weather.getForecast(args, function (result) {
@@ -78,9 +80,15 @@ angular.module('weatherApp')
                 $scope.locationStr      = result.city.name + ', ' + result.city.country;
                 $scope.forecast         = [];
                 $scope.forecastIndex    = 0;
+                var index               = 0;
 
                 // parsing each forecast
-                angular.forEach(result.list, function (forecast, index) {
+                angular.forEach(result.list, function (forecast) {
+
+                    if (forecast.dt < $scope.now) {
+                        // forecast from a previous date
+                        return false;
+                    }
 
                     // parsing temperatures to int
                     Object.keys(forecast.temp).map(function (key) {
@@ -99,9 +107,23 @@ angular.module('weatherApp')
                     // uppercase weather description
                     forecast.weather[0].description = forecast.weather[0].description.replace(/\b[a-z]/g, function (f) { return f.toUpperCase(); });
 
+                    index++;
                     $scope.forecast.push(forecast);
+
+                    return true;
                 });
 
+                // getting current weather data
+                Weather.getWeather(args, function (result) {
+
+                    // replacing data on current forecast
+                    $scope.forecast[0].weather                  = result.weather;
+                    $scope.forecast[0].weather[0].description   = result.weather[0].description.replace(/\b[a-z]/g, function (f) { return f.toUpperCase(); });
+                    $scope.forecast[0].temp.day                 = parseInt(result.main.temp);
+                    $scope.forecast[0].icon                     = 'images/icons_weather/' + result.weather[0].icon + '.svg';
+                    $scope.forecast[0].speed                    = result.wind.speed;
+                    $scope.forecast[0].humidity                 = result.main.humidity;
+                });
 
             }, function (err) {
                 // showing error toast
