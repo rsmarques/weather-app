@@ -69,7 +69,7 @@ angular.module('weatherApp')
                 return false;
             }
 
-            $scope.now  = moment().unix();
+            $scope.now  = moment().startOf('day').unix();
 
             var args    = { units: 'metric' };
             for (var key in $scope.currentLocation.args) { args[key] = $scope.currentLocation.args[key]; }
